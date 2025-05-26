@@ -17,6 +17,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('questions',\App\Http\Controllers\QuestinsController::class);
-
+Route::resource('questions',\App\Http\Controllers\QuestinsController::class)->except('show');
+Route::get('/questions/{slug}',[\App\Http\Controllers\QuestinsController::class,'show'])->name('questions.show');
 require __DIR__.'/auth.php';

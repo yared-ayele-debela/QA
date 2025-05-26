@@ -44,6 +44,11 @@ class QuestinsController extends Controller
     public function show(Question $question)
     {
         //
+//        dd($question);
+//        $question=Question::findOrFail($slug);
+
+        $question->increment('views');
+        return view('Frontend.pages.questions.show',compact('question'));
     }
 
     /**
@@ -51,7 +56,6 @@ class QuestinsController extends Controller
      */
     public function edit(Question $question)
     {
-
 
         return view('Frontend.pages.questions.edit',compact('question'));
 
