@@ -23,6 +23,7 @@ class QuestinsController extends Controller
     public function create()
     {
         //
+        return view('Frontend.pages.questions.create');
     }
 
     /**
@@ -31,6 +32,17 @@ class QuestinsController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'title'=>'required|string',
+            'body'=>'required|string'
+        ]);
+
+        $question=new Question();
+        $question->title= $request->title;
+        $question->body= $request->body;
+        $question->save();
+
+        return redirect()->back()->with('success','Questions Added Successfully!');
     }
 
     /**

@@ -4,10 +4,22 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h2 class="mb-4">Latest Questions</h2>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2 class="mb-4">Latest Questions</h2>
+                    <a href="{{route('questions.create')}}" class="btn btn-primary">Ask Questions</a>
+                </div>
                 @forelse($questions as $question)
                     <div class="card mb-4 shadow-sm border-1 rounded-2">
                         <div class="card-body d-flex flex-column flex-md-row justify-content-between gap-3">
+{{--                            <div class="vote">--}}
+{{--                                <strong>{{ $question->votes }}</strong> {{ \Illuminate\Support\Str::plural('vote',$question->votes) }}--}}
+{{--                            </div>--}}
+{{--                            <div class="vote">--}}
+{{--                                <strong>{{ $question->answers }}</strong> {{ \Illuminate\Support\Str::plural('answer',$question->answer) }}--}}
+{{--                            </div>--}}
+{{--                            <div class="vote">--}}
+{{--                                <strong>{{ $question->views }}</strong> {{ \Illuminate\Support\Str::plural('view',$question->views) }}--}}
+{{--                            </div>--}}
                             <div class="flex-grow-1">
                                 <h5 class="card-title mb-2">
                                     <a href="{{ route('questions.show', $question->slug) }}" class="text-decoration-none text-dark hover-effect">
@@ -15,7 +27,7 @@
                                     </a>
                                 </h5>
                                 <p class="text-muted mb-1 small">
-                                    <i class="bi bi-person-circle"></i> {{ $question->user->name ?? 'Unknown' }} •
+                                    <i class="bi bi-person-circle"></i> Asked By {{ $question->user->name ?? 'Unknown' }} •
                                     <i class="bi bi-clock"></i> {{ $question->created_at->format('M d, Y') }}
                                 </p>
                                 <p class="text-secondary">{{ Str::limit($question->body, 150) }}</p>
