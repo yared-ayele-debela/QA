@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AskQuestionRequest;
 use App\Models\Question;
 use Illuminate\Http\Request;
 
@@ -29,20 +30,16 @@ class QuestinsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AskQuestionRequest $request)
     {
-        //
-        $request->validate([
-            'title'=>'required|string',
-            'body'=>'required|string'
-        ]);
+//        dd("works");
+          $request->user()->questions()->create($request->only('title','body'));
+//        $question=new Question();
+//        $question->title= $request->title;
+//        $question->body= $request->body;
+//        $question->save();
 
-        $question=new Question();
-        $question->title= $request->title;
-        $question->body= $request->body;
-        $question->save();
-
-        return redirect()->back()->with('success','Questions Added Successfully!');
+        return redirect()->route('questions.index')->with('success','Questions has been added successfully!');
     }
 
     /**

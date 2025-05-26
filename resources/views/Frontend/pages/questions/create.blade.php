@@ -13,16 +13,18 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="question-title" class="form-label">Title</label>
-                                    <input type="text" class="form-control {{$errors->has('title')? 'is-invalid':''}}" name="title" id="question-title" >
+                                    <input type="text" class="form-control {{$errors->has('title')? 'is-invalid':''}}" name="title" value="{{old('title')}}" id="question-title" >
                                     @error('title')
-                                    <small class="form-text text-danger text-muted">{{$message}}</small>
+                                    <small class="text-danger ">{{$message}}</small>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="question-body" class="form-label">Question Detail</label>
-                                    <textarea class="form-control {{$errors->has('body')? 'is-invalid':''}}" name="body" id="question-body" rows="6"></textarea>
+                                    <textarea class="form-control {{$errors->has('body')? 'is-invalid':''}}" name="body" id="question-body" rows="6">
+                                        {{old('body')}}
+                                    </textarea>
                                     @error('body')
-                                    <small class="form-text text-danger text-muted">{{$message}}</small>
+                                    <small class=" text-danger ">{{$message}}</small>
                                     @enderror
                                 </div>
                                 <div class="form-group pt-2">

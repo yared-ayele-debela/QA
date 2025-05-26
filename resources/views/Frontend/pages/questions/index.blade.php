@@ -8,6 +8,7 @@
                     <h2 class="mb-4">Latest Questions</h2>
                     <a href="{{route('questions.create')}}" class="btn btn-primary">Ask Questions</a>
                 </div>
+                @include('Frontend.layouts._message')
                 @forelse($questions as $question)
                     <div class="card mb-4 shadow-sm border-1 rounded-2">
                         <div class="card-body d-flex flex-column flex-md-row justify-content-between gap-3">
