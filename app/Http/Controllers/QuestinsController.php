@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AskQuestionRequest;
 use App\Models\Question;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class QuestinsController extends Controller
 {
@@ -66,19 +68,41 @@ class QuestinsController extends Controller
      */
     public function update(AskQuestionRequest $request, Question $question)
     {
+        try {
+
+            Gate::authorize('update',$question);
+
         $question->update($request->only('title','body'));
 
         return redirect()->route('questions.index')->with('success','Questions has been updated successfully!');
-    }
+        } catch (AuthorizationException $e) {
+            // Option 1: Show a custom view
+        return response()->view('errors.custom-unauthorized', [], 403);
+
+            // Option 2: Redirect with flash message
+            // return redirect()->route('home')->with('error', 'You are not authorized to edit this question.');
+        }
+
+}
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Question $question)
     {
-        //
+        try {
+
+            Gate::authorize('delete',$question);
+
         $question->delete();
         return redirect()->route('questions.index')->with('success','Questions has been deleted successfully!');
 
+    } catch (AuthorizationException $e) {
+    // Option 1: Show a custom view
+return response()->view('errors.custom-unauthorized', [], 403);
+
+    // Option 2: Redirect with flash message
+    // return redirect()->route('home')->with('error', 'You are not authorized to edit this question.');
+}
     }
 }
