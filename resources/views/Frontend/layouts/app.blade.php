@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>My StackOverflow</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="{{asset('custom_css/index.css')}}" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <style>
         .hover-effect:hover {
             color: #0d6efd;
@@ -19,7 +20,7 @@
 <body>
 
 {{-- Header --}}
-<nav class="navbar navbar-expand-lg text-dark bg-light">
+<nav class="navbar navbar-expand-lg text-dark shadow-md bg-light">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">MyStackOverflow</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -45,7 +46,7 @@
 </div>
 
 {{-- Footer --}}
-<footer class="bg-dark text-white text-center py-3 mt-auto">
+<footer class="bg-dark text-white text-center py-3 mt-auto bottom-0" >
     <div class="container">
         <p class="mb-0">© {{ date('Y') }} MyStackOverflow. All rights reserved.</p>
     </div>
