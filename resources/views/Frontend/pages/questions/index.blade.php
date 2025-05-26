@@ -37,7 +37,12 @@
                                 <p class="text-secondary">{{ Str::limit($question->body, 150) }}</p>
                             </div>
                             <div class="ml-auto d-flex justify-content-center align-items-center ">
-                                <a href="{{route('questions.edit',$question->id)}}" class="btn btn-sm btn-outline-info">Edit</a>
+                                <a href="{{route('questions.edit',$question->id)}}" class="btn btn-sm btn-outline-info">Edit</a> &nbsp;
+                                <form method="post" action="{{route('questions.destroy',$question->id)}}" >
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return alert('Are you sure to delete this question')">Delete</button>
+                                </form>
                             </div>
 
                         </div>
