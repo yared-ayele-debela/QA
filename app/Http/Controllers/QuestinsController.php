@@ -34,10 +34,6 @@ class QuestinsController extends Controller
     {
 //        dd("works");
           $request->user()->questions()->create($request->only('title','body'));
-//        $question=new Question();
-//        $question->title= $request->title;
-//        $question->body= $request->body;
-//        $question->save();
 
         return redirect()->route('questions.index')->with('success','Questions has been added successfully!');
     }
